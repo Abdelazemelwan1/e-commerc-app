@@ -8,6 +8,10 @@ export let WishListContext = createContext()
 
 export default function WishlistContextProvider({children}) {
     const [products, setProducts] = useState(null)
+    //     ()=>{
+    //     const stored = localStorage.getItem("products");
+    //     return stored ? JSON.parse(stored) : [];
+    // }
     const [count, setCount] = useState(null) 
     const [isLodaing, setIsLodaing] = useState(null)
     const [length, setLength] = useState(null)
@@ -82,6 +86,10 @@ export default function WishlistContextProvider({children}) {
         .then((res) => {
               setCount(res.data.count)
             setProducts(res.data.data)
+            let pro = products.filter((item)=> item._id != id)
+            setProducts(pro)
+            console.log(pro);
+
             setLength(res.data.data.length)
             // getWishList()
             console.log(res);
@@ -119,7 +127,7 @@ export default function WishlistContextProvider({children}) {
     // },[count])
 
 
-  return <WishListContext.Provider value={{addToWishlist , getWishList , removeWishListItem, length , count , products , isLodaing}}>
+  return <WishListContext.Provider value={{addToWishlist , getWishList , removeWishListItem, setProducts ,setLength , length , count , products , isLodaing}}>
     {children}
   </WishListContext.Provider>
 }

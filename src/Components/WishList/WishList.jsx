@@ -13,9 +13,8 @@ import toast from 'react-hot-toast';
 
 export default function WishList() {
   // let [tatel, setTatel] = useState(null)
-  let {getWishList , count ,length, products , isLodaing , removeWishListItem} = useContext(WishListContext);
-   let {addProductToCart} = useContext(cartContext)
- 
+  let {getWishList , count ,length, setLength , products , setProducts, isLodaing , removeWishListItem} = useContext(WishListContext);
+  let {addProductToCart} = useContext(cartContext)
 
 async function addToCartProduct(id) {
     let flag = await addProductToCart(id);
@@ -32,22 +31,12 @@ async function addToCartProduct(id) {
 //   nav.current.classList.add('hidden')
 // }
 }
-
-
-
-
-
   let delAll = useRef(null)
     const dellAllProd = ()=> {
-      products = []
-      console.log(products)
-  //   if (length > 0) {
-  //     return length = 0
-  //     console.log(products.length)
-  //   }
+      setProducts([])
+      setLength(0)
+    console.log(products)
   }
- 
-
 
 
 
@@ -102,7 +91,7 @@ async function addToCartProduct(id) {
   <div className='w-fit  ms-auto'>
     <button 
     ref={delAll}
-    onClick={()=>dellAllProd()}
+    onClick={dellAllProd}
       className='bg-red-600 text-white px-4 py-2 rounded-md cursor-pointer'>CLEAR CART</button>
   </div>
   </>
