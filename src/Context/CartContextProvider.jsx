@@ -133,7 +133,7 @@ let lodingToast = toast.loading("looding........")
       headers:{
         token:localStorage.getItem("token")
       }
-    }).then(() => {
+    }).then((res) => {
         setNumofCart(res.data.numOfCartItems)
         toast.success("order made successfully")
         return true
@@ -159,7 +159,7 @@ let lodingToast = toast.loading("looding........")
             setTimeout(() => {
                 window.open(res.data.session.url, "_self")
           
-        }, 10000);
+        }, 1000);
             setNumofCart(res.data.numOfCartItems)
             return true
         }).catch((error) => {
